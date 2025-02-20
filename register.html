@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title>Amazon Register</title>
+    <style>
+      body {
+        background-color: #f3f3f3;
+        font-family: Arial, sans-serif;
+      }
+      .register-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .register-container h2 {
+        font-size: 28px;
+        font-weight: 400;
+        margin-bottom: 20px;
+      }
+      .form-control {
+        margin-bottom: 15px;
+      }
+      .btn-primary {
+        width: 100%;
+        background-color: #ffd814;
+        border: none;
+        color: black;
+      }
+      .btn-primary:hover {
+        background-color: #ffd814;
+        color: black;
+      }
+      .footer-links {
+        margin-top: 20px;
+        font-size: 12px;
+      }
+      .footer-links a {
+        color: #0066c0;
+        text-decoration: none;
+      }
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+      .footer-text {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="register-container">
+      <div class="d-flex mb-4" style="justify-content: center">
+        <img src="assets/amazon_logo_dark.png" width="100px" />
+      </div>
+      <h2>Create Account</h2>
+      <form id="registerForm" novalidate>
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Your Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fullName"
+            required
+            aria-describedby="fullNameFeedback"
+          />
+          <div id="fullNameFeedback" class="invalid-feedback">
+            Full name is required and must contain only characters.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            required
+            aria-describedby="emailFeedback"
+          />
+          <div id="emailFeedback" class="invalid-feedback">
+            Please enter a valid email.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            required
+            aria-describedby="passwordFeedback"
+          />
+          <div id="passwordFeedback" class="invalid-feedback">
+            Password must be at least 8 characters long.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="rePass" class="form-label">Re-enter Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="rePass"
+            required
+            aria-describedby="rePassFeedback"
+          />
+          <div id="rePassFeedback" class="invalid-feedback">
+            Passwords do not match.
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+          Create your Amazon account
+        </button>
+      </form>
+      <div class="footer-links">
+        <p>
+          By creating an account, you agree to Amazon's
+          <a href="#">Conditions of Use</a> and <a href="#">Privacy Notice</a>.
+        </p>
+      </div>
+      <div class="footer-text">
+        <p>Already have an account? <a href="login.html">Sign in</a></p>
+        <p>© 1996-2025, Amazon.com, Inc. or its affiliates</p>
+      </div>
+    </div>
+
+    <script type="module" src="./scripts/register.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

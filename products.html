@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Product Page</title>
+    <style>
+      .product-card {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+      .product-card h3 {
+        font-size: 1.2rem;
+        margin-top: 10px;
+      }
+      .product-card p {
+        font-size: 0.9rem;
+        color: #555;
+      }
+      .pagination {
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .product-price {
+        color: #b12704;
+        font-weight: bold;
+      }
+      .product-rating {
+        color: #ffa41c;
+        margin-bottom: 10px;
+      }
+      .product-card .category {
+        background-color: #f0f0f0;
+        padding: 3px 8px;
+        border-radius: 10px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-top: auto;
+      }
+      #searchForm {
+        width: 100%;
+      }
+      .page-link {
+        color: #212529;
+      }
+      .page-link:hover {
+        color: #212529;
+      }
+      .page-item.active .page-link {
+        background-color: #212529;
+        border-color: #212529;
+      }
+      .page-item.active .page-link:hover {
+        background-color: #212529;
+        border-color: #212529;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary p-2">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="./assets/amazon_logo.png" width="100px" />
+        </a>
+
+        <button
+          class="navbar-toggler custom-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"
+            ><i class="fa-solid fa-bars"></i
+          ></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <div class="text-white me-3 my-2 d-flex gap-2 align-items-center">
+            <div><i class="fa-solid fa-location-dot"></i></div>
+            <div class="d-flex flex-column">
+              <span class="deliver-to small text-muted">Deliver to</span>
+              <span>Egypt</span>
+            </div>
+          </div>
+
+          <div class="flex-grow-1 my-2">
+            <form
+              id="searchForm"
+              class="d-flex position-relative"
+              role="search"
+            >
+              <div class="input-group">
+                <button
+                  class="btn btn-secondary dropdown-toggle rounded-start"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  All
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li>
+                </ul>
+                <input
+                  id="searchInput"
+                  class="form-control"
+                  type="search"
+                  placeholder="Search Amazon.eg"
+                  aria-label="Search"
+                />
+                <button class="btn btn-warning" type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <ul
+            class="navbar-nav ms-auto mb-2 mb-lg-0"
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <li class="nav-item dropdown">
+              <button
+                class="btn dropdown-toggle nav-link py-0 px-2"
+                type="button"
+                id="langDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span>🇪🇬</span>
+                <span style="color: #fff">EN</span>
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="langDropdown"
+              >
+                <li><a class="dropdown-item" href="#">English</a></li>
+                <li><a class="dropdown-item" href="#">العربية</a></li>
+                <li><a class="dropdown-item" href="#">Français</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown accountDropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="/login.html"
+                id="accountDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div class="small text-muted">Hello, sign in</div>
+                <div class="fw-bold" style="color: #fff">Accounts & Lists</div>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="accountDropdown"
+              >
+                <li><a class="dropdown-item" href="#">Your Account</a></li>
+                <li><a class="dropdown-item" href="#">Your Orders</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="/login.html">Sign In</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="#" style="color: #fff"
+                >Orders</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link fw-bold d-flex gap-2 align-items-center"
+                href="#"
+              >
+                <div class="position-relative">
+                  <span
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark"
+                    >0</span
+                  >
+                  <i
+                    class="fa-solid fa-cart-shopping fa-lg"
+                    style="color: #fff"
+                  ></i>
+                </div>
+                <span class="d-none d-lg-inline" style="color: #fff">Cart</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="nav-bottom">
+      <div class="left-side">
+        <span id="openSidebar">
+          <i class="fa-solid fa-bars"></i>
+          All
+        </span>
+        <span>
+          <a href=""> Ramadan Deals </a>
+        </span>
+        <span>
+          <a href=""> Shaaban Deals </a>
+        </span>
+        <span>
+          <a href=""> Ragab Deals </a>
+        </span>
+        <span>
+          <a href=""> Eid Deals </a>
+        </span>
+        <span>
+          <a href=""> Ay Deals </a>
+        </span>
+        <span>
+          <a href=""> Deal Deals </a>
+        </span>
+      </div>
+      <div class="right-side">
+        <img
+          class="ramdamBanner"
+          width="100%"
+          height="100%"
+          src="https://m.media-amazon.com/images/G/42/Homepage/2025/Events/Q1/RMDSale/DO/SWM/RAM25_DO_GW_GCC_SWM_400x39_EN_2x._CB549577549_.jpg"
+        />
+      </div>
+    </div>
+    <div class="container mt-5">
+      <div id="searchQueryDisplay" class="text-center mb-4 d-none">
+        <h4>Search results for: <span id="currentSearchQuery"></span></h4>
+        <button
+          id="clearSearchBtn"
+          class="btn btn-sm btn-outline-secondary mt-2"
+        >
+          Clear Search
+        </button>
+      </div>
+
+      <div id="loadingIndicator" class="text-center mb-4">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Loading products...</p>
+      </div>
+
+      <div class="row" id="productGrid"></div>
+
+      <nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination"></ul>
+      </nav>
+    </div>
+    <!-- footer -->
+    <div class="container-fluid" id="containerFluid-4">
+      <footer class="page-footer">
+        <div class="container" id="FooterContainer">
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-3" id="Fcolumn">
+              <h5 class="list-header mt-3 mb-2">Get to Know Us</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Press Releases</a></li>
+                <li><a href="#">Amazon Cares</a></li>
+                <li><a href="#">Gift a Smile</a></li>
+                <li><a href="#">Amazon Science</a></li>
+              </ul>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-3" id="Fcolumn">
+              <h5 class="list-header mt-3 mb-2">Connect with Us</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+              </ul>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-3" id="Fcolumn">
+              <h5 class="list-header mt-3 mb-2">Make Money with Us</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Sell on Amazon</a></li>
+                <li><a href="#">Sell under Amazon Accelerator</a></li>
+                <li><a href="#">Amazon Global Selling</a></li>
+                <li><a href="#">Become an Affiliate</a></li>
+                <li><a href="#">Fulfilment by Amazon</a></li>
+                <li><a href="#">Advertise Your Products</a></li>
+                <li><a href="#">Amazon Pay on Merchants</a></li>
+              </ul>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-3" id="Fcolumn">
+              <h5 class="list-header mt-3 mb-2">Let Us Help You</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">COVID-19 and Amazon</a></li>
+                <li><a href="#">Your Account</a></li>
+                <li><a href="#">Returns Centre</a></li>
+                <li><a href="#">100% Purchase Protection</a></li>
+                <li><a href="#">Amazon App Download</a></li>
+                <li><a href="#">Amazon Assistant Download</a></li>
+                <li><a href="#">Help</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <div class="container-fluid" id="containerFluid-5">
+      <div class="container" id="CF5container">
+        <div id="FooterImage">
+          <img src="assets/amazon_logo.png" alt="footerLogo" />
+        </div>
+        <div class="btn-group language">
+          <button
+            class="btn dropdown-toggle"
+            type="button"
+            id="customDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <div><i class="fa-solid fa-globe"></i></div>
+            <div><span>English</span></div>
+          </button>
+          <ul class="dropdown-menu" id="language">
+            <li class="dropdown-item">
+              <div class="form-check">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  id="opt_1"
+                  name="language_option"
+                  checked
+                />
+                <label class="form-check-label" for="opt_1">English</label>
+              </div>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li class="dropdown-item">
+              <div class="form-check">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  id="opt_2"
+                  name="language_option"
+                />
+                <label class="form-check-label" for="opt_2">ARABIC</label>
+              </div>
+            </li>
+            <li class="dropdown-item">
+              <div class="form-check">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  id="opt_3"
+                  name="language_option"
+                />
+                <label class="form-check-label" for="opt_3">FRENCH</label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid" id="containerFluid-6">
+      <footer class="page-footer">
+        <div class="container" id="FooterContainer6">
+          <div class="row">
+            <div class="col-6 col-md-2" id="Fcolumn">
+              <h5 class="list-header mt-3 mb-1">ABeBooks</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Books, art</a></li>
+                <li><a href="#">& collectibles</a></li>
+              </ul>
+              <h5 class="list-header mt-3 mb-1">Shopbop</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Designer</a></li>
+                <li><a href="#">Fashion Brands</a></li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-2" id="Fcolumn">
+              <h5 class="list-header mt-3 mb-1">Amazon Web Services</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Scalable Cloud</a></li>
+                <li><a href="#">Computing Services</a></li>
+              </ul>
+              <h5 class="list-header mt-3 mb-1">Amazon Business</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Everything For</a></li>
+                <li><a href="#">Your Business</a></li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-2" id="Fcolumn">
+              <h5 class="list-header mt-3 mb-1">Audible</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Download</a></li>
+                <li><a href="#">Audio Books</a></li>
+              </ul>
+              <h5 class="list-header mt-3 mb-1">Prime Now</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">2-Hour Delivery</a></li>
+                <li><a href="#">on Everyday items</a></li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-3" id="Fcolumn">
+              <h5 class="list-header mt-3 mb-1">DPReview</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Digital</a></li>
+                <li><a href="#">Photography</a></li>
+              </ul>
+              <h5 class="list-header mt-3 mb-1">Amazon Prime Music</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">90 million songs, ad-free</a></li>
+                <li><a href="#">Over 15 million podcast episodes</a></li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-3" id="Fcolumn">
+              <h5 class="list-header mt-3 mb-1">IMDB</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Movies, TV</a></li>
+                <li><a href="#">& Celebrities</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-copyright text-center py-3">
+          <a href="#">Condition of Use & Sale</a>
+          <a href="#">Privacy Notice</a>
+          <a href="#">Interest-Based Ads</a>
+          <a href="#">Your Ads Privacy Choices</a>
+        </div>
+      </footer>
+    </div>
+    <script>
+      const productsPerPage = 20;
+      let currentPage = 1;
+      let totalProducts = 0;
+      let totalPages = 0;
+      let isSearchActive = false;
+      let currentSearchQuery = "";
+
+      function getSearchQueryFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("q") || "";
+      }
+
+      function updateURLWithSearchQuery(query) {
+        if (!query) {
+          const newURL = window.location.pathname;
+          window.history.pushState({}, "", newURL);
+          return;
+        }
+
+        const newURL = `${window.location.pathname}?q=${encodeURIComponent(
+          query
+        )}`;
+        window.history.pushState({}, "", newURL);
+      }
+
+      async function fetchProducts(page, searchQuery = "") {
+        try {
+          document.getElementById("loadingIndicator").style.display = "block";
+
+          let url = `https://dummyjson.com/products?limit=${productsPerPage}&skip=${
+            (page - 1) * productsPerPage
+          }`;
+
+          if (searchQuery) {
+            url = `https://dummyjson.com/products/search?q=${encodeURIComponent(
+              searchQuery
+            )}&limit=${productsPerPage}&skip=${(page - 1) * productsPerPage}`;
+          }
+
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+
+          totalProducts = data.total || 0;
+          totalPages = Math.ceil(totalProducts / productsPerPage);
+
+          document.getElementById("loadingIndicator").style.display = "none";
+          return { products: data.products || [], total: data.total };
+        } catch (error) {
+          console.error("Error fetching products:", error);
+          document.getElementById("loadingIndicator").style.display = "none";
+          return { products: [], total: 0 };
+        }
+      }
+
+      function formatPrice(price) {
+        return `EGP ${price.toFixed(2)}`;
+      }
+
+      function generateStars(rating) {
+        const fullStars = Math.floor(rating);
+        const halfStar = rating % 1 >= 0.5;
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+        let starsHTML = "";
+
+        for (let i = 0; i < fullStars; i++) {
+          starsHTML += '<i class="fas fa-star"></i>';
+        }
+
+        if (halfStar) {
+          starsHTML += '<i class="fas fa-star-half-alt"></i>';
+        }
+
+        for (let i = 0; i < emptyStars; i++) {
+          starsHTML += '<i class="far fa-star"></i>';
+        }
+
+        return `${starsHTML} (${rating})`;
+      }
+
+      async function displayProducts(page) {
+        const productGrid = document.getElementById("productGrid");
+        productGrid.innerHTML = "";
+
+        const { products, total } = await fetchProducts(
+          page,
+          currentSearchQuery
+        );
+
+        if (products.length === 0) {
+          productGrid.innerHTML = `
+      <div class="col-12 text-center">
+        <h3>No products found</h3>
+        <p>Try a different search term</p>
+      </div>
+    `;
+          return;
+        }
+
+        products.forEach((product) => {
+          const productCard = `
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="product-card">
+        <img src="${product.thumbnail}" alt="${product.title}" />
+        <h3>${product.title}</h3>
+        <div class="product-rating">${generateStars(product.rating)}</div>
+        <p class="product-price">${formatPrice(product.price)}</p>
+        <p>${product.description.substring(0, 80)}${
+            product.description.length > 80 ? "..." : ""
+          }</p>
+      </div>
+    </div>
+  `;
+          productGrid.innerHTML += productCard;
+        });
+
+        generatePagination();
+      }
+
+      function generatePagination() {
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+
+        if (totalPages === 0) {
+          return;
+        }
+
+        pagination.innerHTML += `
+    <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
+      <a class="page-link" href="#" onclick="changePage(${
+        currentPage - 1
+      }); return false;">Previous</a>
+    </li>
+  `;
+
+        if (currentPage > 1) {
+          pagination.innerHTML += `
+      <li class="page-item">
+        <a class="page-link" href="#" onclick="changePage(${
+          currentPage - 1
+        }); return false;">${currentPage - 1}</a>
+      </li>
+    `;
+        }
+
+        pagination.innerHTML += `
+    <li class="page-item active">
+      <a class="page-link" href="#" onclick="return false;">${currentPage}</a>
+    </li>
+  `;
+
+        if (currentPage < totalPages) {
+          pagination.innerHTML += `
+      <li class="page-item">
+        <a class="page-link" href="#" onclick="changePage(${
+          currentPage + 1
+        }); return false;">${currentPage + 1}</a>
+      </li>
+    `;
+        }
+
+        pagination.innerHTML += `
+    <li class="page-item ${currentPage === totalPages ? "disabled" : ""}">
+      <a class="page-link" href="#" onclick="changePage(${
+        currentPage + 1
+      }); return false;">Next</a>
+    </li>
+  `;
+      }
+
+      async function changePage(page) {
+        if (page < 1) page = 1;
+        if (page > totalPages) page = totalPages;
+
+        currentPage = page;
+        await displayProducts(currentPage);
+        window.scrollTo(0, 0);
+      }
+
+      async function searchProducts(query) {
+        if (!query.trim()) {
+          clearSearch();
+          return;
+        }
+
+        query = query.toLowerCase().trim();
+        currentSearchQuery = query;
+        isSearchActive = true;
+
+        document
+          .getElementById("searchQueryDisplay")
+          .classList.remove("d-none");
+        document.getElementById("currentSearchQuery").textContent = query;
+        updateURLWithSearchQuery(query);
+
+        currentPage = 1;
+        await displayProducts(currentPage);
+      }
+
+      async function clearSearch() {
+        isSearchActive = false;
+        currentSearchQuery = "";
+        document.getElementById("searchInput").value = "";
+        document.getElementById("searchQueryDisplay").classList.add("d-none");
+        updateURLWithSearchQuery("");
+
+        currentPage = 1;
+        await displayProducts(currentPage);
+      }
+
+      function handleGlobalSearch(event) {
+        event.preventDefault();
+        const searchQuery = document.getElementById("searchInput").value;
+
+        if (
+          !window.location.pathname.includes("products.html") &&
+          !window.location.pathname.endsWith("/")
+        ) {
+          window.location.href = `products.html?q=${encodeURIComponent(
+            searchQuery
+          )}`;
+          return;
+        }
+
+        searchProducts(searchQuery);
+      }
+
+      async function initialize() {
+        document
+          .getElementById("searchForm")
+          .addEventListener("submit", handleGlobalSearch);
+        document
+          .getElementById("clearSearchBtn")
+          .addEventListener("click", clearSearch);
+
+        const urlSearchQuery = getSearchQueryFromURL();
+        if (urlSearchQuery) {
+          document.getElementById("searchInput").value = urlSearchQuery;
+          currentSearchQuery = urlSearchQuery;
+          isSearchActive = true;
+          document
+            .getElementById("searchQueryDisplay")
+            .classList.remove("d-none");
+          document.getElementById("currentSearchQuery").textContent =
+            urlSearchQuery;
+        }
+
+        await displayProducts(currentPage);
+      }
+
+      window.addEventListener("load", initialize);
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
