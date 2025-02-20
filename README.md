@@ -16,3 +16,6 @@ cd amazon-lite
 ## Demo
 
 https://amazon-lite-by-mashady.netlify.app/
+
+to view the products page :
+https://amazon-lite-by-mashady.netlify.app/products
